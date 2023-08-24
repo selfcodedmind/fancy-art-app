@@ -8,8 +8,8 @@ class ApiService {
     })
   }
 
-  async get(url: string, config?: AxiosRequestConfig) {
-    return await this.instance.get(url, config)
+  async get<T>(url: string, config?: AxiosRequestConfig) {
+    return await this.instance.get<T>(url, config)
   }
 }
 
