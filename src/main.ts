@@ -1,4 +1,4 @@
-import './assets/main.css'
+import 'sanitize.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
