@@ -33,3 +33,5 @@ export type TArtworksSearchResponse = {
     website_url: string
   }
 }
+
+export type TViewBy = 20 | 50 | 100

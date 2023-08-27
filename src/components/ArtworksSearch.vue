@@ -1,24 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { artworksService } from '@/services/artworksService'
 import { watchDebounced } from '@vueuse/core'
 import { useArtworksStore } from '@/stores/artworksStore'
 
 const searchQuery = ref('')
 const artworksStore = useArtworksStore()
-const handleSearch = async (searchQuery: string) => {
-  if (!searchQuery) return
-
-  const response = await artworksService.searchArtworks(searchQuery)
-  if (!response) return
-
-  artworksStore.images = response.data.data
-}
 
 watchDebounced(
   searchQuery,
   () => {
-    handleSearch(searchQuery.value)
+    artworksStore.searchArtworks(searchQuery.value)
   },
   { debounce: 500 }
 )
