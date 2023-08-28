@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useArtworksStore } from '@/stores/artworksStore'
 import { computed } from 'vue'
-import { useOffsetPagination } from '@vueuse/core'
+import ArtworksPaginationControl from '@/components/ArtworksPaginationControl.vue'
 
 const artworksStore = useArtworksStore()
 const pagination = computed(() => artworksStore.pagination)
@@ -25,18 +25,6 @@ const toPageCount = computed(() => {
 const handleViewByChange = (value: 20 | 50 | 100) => {
   artworksStore.viewBy = value
 }
-
-function changePage({ currentPage }: { currentPage: number }) {
-  artworksStore.searchArtworks(artworksStore.currentSearchQuery, currentPage)
-}
-
-const { currentPage, currentPageSize, pageCount, isFirstPage, isLastPage, prev, next } =
-  useOffsetPagination({
-    total: pagination.value?.total,
-    page: 1,
-    pageSize: viewBy.value,
-    onPageChange: changePage
-  })
 </script>
 
 <template>
@@ -67,15 +55,15 @@ const { currentPage, currentPageSize, pageCount, isFirstPage, isLastPage, prev, 
       </label>
     </div>
     <div class="">
-      <ul>
-        <li>
-          <button @click="prev">prev</button>
-        </li>
-        <li>current page: {{ currentPage }}</li>
-        <li>
-          <button @click="next">next</button>
-        </li>
-      </ul>
+      <ArtworksPaginationControl />
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.pagination {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+</style>

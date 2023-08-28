@@ -10,6 +10,11 @@ export const useArtworksStore = defineStore('artworks', () => {
 
   const viewBy = ref<TViewBy>(50)
   const currentSearchQuery = ref('')
+  const currentPageResetTrigger = ref(0)
+
+  const resetCurrentPageToFirst = () => {
+    currentPageResetTrigger.value++
+  }
 
   const searchArtworks = async (
     searchQuery: string = currentSearchQuery.value,
@@ -20,9 +25,14 @@ export const useArtworksStore = defineStore('artworks', () => {
     const response = await artworksService.searchArtworks(searchQuery, viewBy.value, page)
     if (!response) return
 
-    currentSearchQuery.value = searchQuery
     pagination.value = response.data.pagination
     images.value = response.data.data
+
+    const isNewSearch = searchQuery !== currentSearchQuery.value
+    if (isNewSearch) {
+      currentSearchQuery.value = searchQuery
+      resetCurrentPageToFirst()
+    }
   }
 
   watch(viewBy, async () => {
@@ -34,6 +44,7 @@ export const useArtworksStore = defineStore('artworks', () => {
     images,
     viewBy,
     searchArtworks,
-    currentSearchQuery
+    currentSearchQuery,
+    currentPageResetTrigger
   }
 })
