@@ -8,7 +8,7 @@ export const useArtworksStore = defineStore('artworks', () => {
   const pagination = ref<TArtworksSearchResponse['pagination']>()
   const images = ref<TArtworksSearchResponse['data']>([])
 
-  const viewBy = ref<TViewBy>(50)
+  const viewBy = ref<TViewBy>(20)
   const currentSearchQuery = ref('')
   const currentPageResetTrigger = ref(0)
 

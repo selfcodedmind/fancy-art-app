@@ -25,46 +25,63 @@ watch(
     console.log(currentPage.value)
   }
 )
+
+type TPageControlItem = number | '...'
+
+const paginationControlList = computed(() => {
+  const result: TPageControlItem[] = []
+
+  if (!pagination.value) return result
+
+  if (currentPage.value > 4) result.push(1)
+  if (currentPage.value > 3 && currentPage.value <= 4) result.push(currentPage.value - 3)
+  if (currentPage.value > 2 && currentPage.value <= 4) result.push(currentPage.value - 2)
+  if (currentPage.value > 4) result.push('...')
+  if (currentPage.value > 1) result.push(currentPage.value - 1)
+  result.push(currentPage.value)
+
+  if (currentPage.value === pagination.value?.total_pages) return result
+
+  if (currentPage.value < pagination.value.total_pages - 1) result.push(currentPage.value + 1)
+  if (pagination.value.total_pages - currentPage.value > 3) result.push('...')
+  if (currentPage.value === pagination.value.total_pages - 2) result.push(currentPage.value + 2)
+  if (currentPage.value === pagination.value.total_pages - 2) result.push(currentPage.value + 2)
+  result.push(pagination.value.total_pages)
+
+  return result
+})
+
+const handlePageClick = (targetPage: TPageControlItem) => {
+  if (typeof targetPage === 'number') {
+    currentPage.value = targetPage
+  }
+}
 </script>
 
 <template>
   <ul v-if="pagination?.total_pages" class="pagination-control">
-    <li>
+    <li class="pagination-control__item">
       <button @click="prev">prev</button>
     </li>
 
-    <li v-if="currentPage > 4" @click="currentPage = 1">{{ 1 }}</li>
+    <li
+      v-for="(page, index) in paginationControlList"
+      :key="index"
+      class="pagination-control__item"
+      :class="{
+        'pagination-control__item--current': currentPage === page
+      }"
+    >
+      <button v-if="typeof page === 'number'" @click="handlePageClick(page)">
+        {{ page }}
+      </button>
 
-    <template v-if="currentPage <= 4">
-      <li v-if="currentPage > 3" @click="currentPage -= 3">{{ currentPage - 3 }}</li>
-      <li v-if="currentPage > 2" @click="currentPage -= 2">{{ currentPage - 2 }}</li>
-    </template>
-
-    <li v-if="currentPage > 4">...</li>
-
-    <li v-if="currentPage > 1" @click="currentPage--">{{ currentPage - 1 }}</li>
-
-    <li class="pagination-control__item">
-      <strong> {{ currentPage }} </strong>
+      <span v-else>
+        {{ page }}
+      </span>
     </li>
 
-    <template v-if="currentPage !== pagination.total_pages">
-      <li v-if="currentPage < pagination.total_pages - 1" @click="currentPage++">
-        {{ currentPage + 1 }}
-      </li>
-
-      <li v-if="pagination.total_pages - currentPage > 3">...</li>
-
-      <li v-if="currentPage === pagination.total_pages - 2" @click="currentPage += 2">
-        {{ currentPage + 2 }}
-      </li>
-
-      <li @click="currentPage = pagination.total_pages">
-        {{ pagination?.total_pages }}
-      </li>
-    </template>
-
-    <li>
+    <li class="pagination-control__item">
       <button @click="next">next</button>
     </li>
   </ul>
@@ -76,5 +93,13 @@ watch(
   gap: 10px;
   align-items: center;
   list-style: none;
+
+  // .pagination-control__item
+  &__item {
+    // .pagination-control__item--current
+    &--current button {
+      font-weight: 700;
+    }
+  }
 }
 </style>
