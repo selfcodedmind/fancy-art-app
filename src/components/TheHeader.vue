@@ -1,31 +1,42 @@
 <template>
   <header class="header">
-    <router-link class="header__logo" to="/"> fancy-art-app </router-link>
+    <FaContainer>
+      <div class="header__inner">
+        <router-link class="header__logo" to="/"> Fancy Art </router-link>
 
-    <nav class="header__nav">
-      <RouterLink to="/"> Home </RouterLink>
-      <RouterLink to="/about"> About </RouterLink>
-    </nav>
+        <nav class="header__nav">
+          <FaLink to="/"> HOME </FaLink>
+          <FaLink to="/about" link-type="external"> ABOUT </FaLink>
+        </nav>
+      </div>
+    </FaContainer>
   </header>
 </template>
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import FaContainer from '@/components/ui/FaContainer.vue'
+import FaLink from '@/components/ui/FaLink.vue'
 </script>
 
 <style lang="scss" scoped>
 .header {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40px;
-  border-bottom: 1px solid black;
+  // .header__inner
+  &__inner {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
 
   // .header__logo
   &__logo {
-    font-size: 24px;
-    font-weight: 700;
+    @include font-secondary;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
   }
 
   // .header__nav

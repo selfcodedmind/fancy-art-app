@@ -1,4 +1,5 @@
 import 'sanitize.css'
+import '@/assets/styles/global.scss'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

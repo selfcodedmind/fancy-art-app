@@ -9,10 +9,3 @@ import TheHeader from '@/components/TheHeader.vue'
     <RouterView />
   </div>
 </template>
-
-<style scoped lang="scss">
-.app-wrap {
-  display: grid;
-  grid-gap: 20px;
-}
-</style>

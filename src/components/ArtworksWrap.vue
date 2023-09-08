@@ -2,21 +2,37 @@
 import ArtworksSearch from '@/components/ArtworksSearch.vue'
 import ArtworksImages from '@/components/ArtworksImages.vue'
 import ArtworksPagination from '@/components/ArtworksPagination.vue'
+import ArtworksEntertainment from '@/components/ArtworksEntertainment.vue'
+import FaContainer from '@/components/ui/FaContainer.vue'
 </script>
 
 <template>
   <main class="artworks">
-    <div class="artworks__header">
-      <ArtworksSearch class="artworks__search" />
-      <ArtworksPagination />
-    </div>
-    <ArtworksImages />
+    <FaContainer>
+      <h1 class="artworks__title">COLLECTION</h1>
+      <div class="artworks__header">
+        <ArtworksSearch class="artworks__search" />
+        <ArtworksPagination />
+      </div>
+      <ArtworksEntertainment />
+      <ArtworksImages />
+    </FaContainer>
   </main>
 </template>
 
 <style scoped lang="scss">
 .artworks {
-  padding: 40px;
+  // .artworks__title
+  &__title {
+    text-align: center;
+    padding: 80px 0 120px;
+    font-size: 120px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140px;
+    letter-spacing: -4px;
+    text-transform: uppercase;
+  }
 
   // .artworks__header
   &__header {
@@ -28,7 +44,8 @@ import ArtworksPagination from '@/components/ArtworksPagination.vue'
 
   // .artworks__search
   &__search {
-    margin-bottom: 40px;
+    flex: 0 1 640px;
+    margin-right: 30px;
   }
 }
 </style>
