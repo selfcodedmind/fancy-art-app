@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ArtworksVizualizeDominantColorModal from '@/components/ArtworksVizualizeDominantColorModal.vue'
+import FaButton from '@/components/ui/FaButton.vue'
 
 const isVizualizationModalOpen = ref(false)
 </script>
 
 <template>
   <div class="entertainment">
-    <h2>Entertain yourself:</h2>
-    <ul>
+    <div class="entertainment__title">Entertain yourself:</div>
+    <ul class="entertainment__list">
       <li>
-        <button @click="isVizualizationModalOpen = true">Vizualize dominant colors</button>
+        <FaButton @click="isVizualizationModalOpen = true"> Vizualize dominant colors </FaButton>
       </li>
       <li>
-        <button>Slideshow</button>
+        <FaButton> Slideshow </FaButton>
       </li>
     </ul>
 
@@ -23,3 +24,21 @@ const isVizualizationModalOpen = ref(false)
     />
   </div>
 </template>
+
+<style lang="scss" scoped>
+.entertainment {
+  display: flex;
+  align-items: center;
+  // .entertainment__title
+  &__title {
+    margin-right: 16px;
+    white-space: nowrap;
+  }
+
+  // .entertainment__list
+  &__list {
+    display: flex;
+    gap: 12px;
+  }
+}
+</style>

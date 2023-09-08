@@ -12,9 +12,9 @@ import FaContainer from '@/components/ui/FaContainer.vue'
       <h1 class="artworks__title">COLLECTION</h1>
       <div class="artworks__header">
         <ArtworksSearch class="artworks__search" />
-        <ArtworksPagination />
+        <ArtworksEntertainment />
       </div>
-      <ArtworksEntertainment />
+      <ArtworksPagination />
       <ArtworksImages />
     </FaContainer>
   </main>
@@ -25,7 +25,8 @@ import FaContainer from '@/components/ui/FaContainer.vue'
   // .artworks__title
   &__title {
     text-align: center;
-    padding: 80px 0 120px;
+    padding-top: 80px;
+    margin-bottom: 120px;
     font-size: 120px;
     font-style: normal;
     font-weight: 400;
@@ -40,6 +41,7 @@ import FaContainer from '@/components/ui/FaContainer.vue'
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    margin-bottom: 20px;
   }
 
   // .artworks__search

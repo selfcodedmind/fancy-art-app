@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useArtworksStore } from '@/stores/artworksStore'
 import { computed } from 'vue'
-import ArtworksPaginationControl from '@/components/ArtworksPaginationControl.vue'
 
 const artworksStore = useArtworksStore()
 const pagination = computed(() => artworksStore.pagination)
@@ -34,7 +33,7 @@ const handleViewByChange = (value: 20 | 50 | 100) => {
       {{ pagination?.total }}
     </div>
     <div class="">
-      <label for="">
+      <label class="view-by">
         Show by
         <select
           name="view-by"
@@ -54,9 +53,6 @@ const handleViewByChange = (value: 20 | 50 | 100) => {
         </select>
       </label>
     </div>
-    <div class="">
-      <ArtworksPaginationControl />
-    </div>
   </div>
 </template>
 
@@ -65,5 +61,15 @@ const handleViewByChange = (value: 20 | 50 | 100) => {
   display: flex;
   gap: 20px;
   align-items: center;
+  justify-content: flex-end;
+
+  // .pagination__range
+  &__range {
+    white-space: nowrap;
+  }
+}
+
+.view-by {
+  white-space: nowrap;
 }
 </style>
