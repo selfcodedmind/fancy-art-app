@@ -1,8 +1,15 @@
 <template>
   <button class="button">
-    <slot />
+    <FaSpinner v-if="isLoading" />
+    <slot v-if="!isLoading" />
   </button>
 </template>
+
+<script lang="ts" setup>
+import FaSpinner from '@/components/ui/FaSpinner.vue'
+
+defineProps<{ isLoading?: boolean }>()
+</script>
 
 <style scoped lang="scss">
 .button {

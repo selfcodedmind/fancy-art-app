@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { useArtworksStore } from '@/stores/artworksStore'
-import ArtworksImagesItem from '@/components/ArtworksImagesItem.vue'
+import ArtworksImagesItem from '@/components/artworks/ArtworksListItem.vue'
 const artworksStore = useArtworksStore()
 </script>
 
 <template>
   <ul class="list">
     <ArtworksImagesItem
-      v-for="({ id, image_id }, index) in artworksStore.images"
-      :key="id"
+      v-for="(artwork, index) in artworksStore.artworks"
+      :key="artwork.image_id"
       :index="index"
-      :image-id="image_id"
+      :artwork="artwork"
     />
   </ul>
 </template>
@@ -19,7 +19,8 @@ const artworksStore = useArtworksStore()
 .list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+  grid-column-gap: 40px;
+  grid-row-gap: 60px;
   list-style: none;
   padding: 0;
 }

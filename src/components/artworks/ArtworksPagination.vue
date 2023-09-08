@@ -6,12 +6,7 @@ const artworksStore = useArtworksStore()
 const pagination = computed(() => artworksStore.pagination)
 const viewBy = computed(() => artworksStore.viewBy)
 
-const viewByOptions = [20, 50, 100]
-
-const fromPageCount = computed(() => {
-  if (!pagination.value) return
-  return (pagination.value.current_page - 1) * viewBy.value + 1
-})
+const viewByOptions = [18, 54, 108]
 
 const toPageCount = computed(() => {
   if (!pagination.value) return
@@ -21,7 +16,7 @@ const toPageCount = computed(() => {
   return isOnLastPage ? pagination.value?.total : pagination.value?.current_page * viewBy.value
 })
 
-const handleViewByChange = (value: 20 | 50 | 100) => {
+const handleViewByChange = (value: 18 | 54 | 108) => {
   artworksStore.viewBy = value
 }
 </script>
@@ -29,17 +24,17 @@ const handleViewByChange = (value: 20 | 50 | 100) => {
 <template>
   <div class="pagination">
     <div v-if="pagination?.total" class="pagination__range">
-      {{ fromPageCount }} - {{ toPageCount }} from
+      1 - {{ toPageCount }} from
       {{ pagination?.total }}
     </div>
     <div class="">
       <label class="view-by">
-        Show by
+        Load by
         <select
           name="view-by"
           :disabled="!pagination?.total || pagination?.total <= artworksStore.viewBy"
           @change="
-            handleViewByChange(Number(($event.target as HTMLSelectElement).value) as 20 | 50 | 100)
+            handleViewByChange(Number(($event.target as HTMLSelectElement).value) as 18 | 54 | 108)
           "
         >
           <option

@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import ArtworksSearch from '@/components/ArtworksSearch.vue'
-import ArtworksImages from '@/components/ArtworksImages.vue'
-import ArtworksPagination from '@/components/ArtworksPagination.vue'
-import ArtworksEntertainment from '@/components/ArtworksEntertainment.vue'
+import ArtworksSearch from '@/components/artworks/ArtworksSearch.vue'
+import ArtworksImages from '@/components/artworks/ArtworksList.vue'
+import ArtworksPagination from '@/components/artworks/ArtworksPagination.vue'
 import FaContainer from '@/components/ui/FaContainer.vue'
+import ArtworksLoadMore from '@/components/artworks/ArtworksLoadMore.vue'
+import { useArtworksStore } from '@/stores/artworksStore'
+
+const artworksStore = useArtworksStore()
 </script>
 
 <template>
@@ -12,10 +15,10 @@ import FaContainer from '@/components/ui/FaContainer.vue'
       <h1 class="artworks__title">COLLECTION</h1>
       <div class="artworks__header">
         <ArtworksSearch class="artworks__search" />
-        <ArtworksEntertainment />
       </div>
-      <ArtworksPagination />
+      <ArtworksPagination class="artworks__pagination" />
       <ArtworksImages />
+      <ArtworksLoadMore v-if="artworksStore.artworks.length" />
     </FaContainer>
   </main>
 </template>
@@ -54,7 +57,7 @@ import FaContainer from '@/components/ui/FaContainer.vue'
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     margin-bottom: 20px;
 
     @include breakpoint(tablet-portrait) {
@@ -65,8 +68,12 @@ import FaContainer from '@/components/ui/FaContainer.vue'
 
   // .artworks__search
   &__search {
-    flex: 0 1 640px;
-    margin-right: 30px;
+    flex: 1 1 640px;
+  }
+
+  // .artworks__pagination
+  &__pagination {
+    margin-bottom: 20px;
   }
 }
 </style>

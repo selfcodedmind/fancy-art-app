@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ArtworksVizualizeDominantColorModal from '@/components/ArtworksVizualizeDominantColorModal.vue'
+import ArtworksVizualizeDominantColorModal from '@/components/artworks/ArtworksVizualizeDominantColorModal.vue'
 import FaButton from '@/components/ui/FaButton.vue'
 
 const isVizualizationModalOpen = ref(false)

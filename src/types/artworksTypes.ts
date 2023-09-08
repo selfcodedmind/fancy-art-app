@@ -1,3 +1,18 @@
+export type TArtwork = {
+  _score: number
+  date_end: number
+  artist_title: string
+  image_id: string
+  title: string
+  color: {
+    h: number
+    l: number
+    percentage: number
+    population: number
+    s: number
+  }
+}
+
 export type TArtworksSearchResponse = {
   preference: null
   pagination: {
@@ -7,22 +22,7 @@ export type TArtworksSearchResponse = {
     total_pages: number
     current_page: number
   }
-  data: {
-    _score: number
-    thumbnail: {
-      alt_text: string
-      width: number
-      lqip: string
-      height: number
-    }
-    api_model: string
-    is_boosted: boolean
-    api_link: string
-    id: number
-    title: string
-    timestamp: string
-    image_id: string
-  }[]
+  data: TArtwork[]
   info: {
     license_text: string
     license_links: string[]
@@ -34,4 +34,4 @@ export type TArtworksSearchResponse = {
   }
 }
 
-export type TViewBy = 20 | 50 | 100
+export type TViewBy = 18 | 36 | 54

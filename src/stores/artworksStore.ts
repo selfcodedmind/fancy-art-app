@@ -6,15 +6,11 @@ import { artworksService } from '@/services/artworksService'
 
 export const useArtworksStore = defineStore('artworks', () => {
   const pagination = ref<TArtworksSearchResponse['pagination']>()
-  const images = ref<TArtworksSearchResponse['data']>([])
+  const artworks = ref<TArtworksSearchResponse['data']>([])
 
-  const viewBy = ref<TViewBy>(20)
+  const currentPage = ref(1)
+  const loadBy = ref<TViewBy>(18)
   const currentSearchQuery = ref('')
-  const currentPageResetTrigger = ref(0)
-
-  const resetCurrentPageToFirst = () => {
-    currentPageResetTrigger.value++
-  }
 
   const searchArtworks = async (
     searchQuery: string = currentSearchQuery.value,
@@ -22,29 +18,41 @@ export const useArtworksStore = defineStore('artworks', () => {
   ) => {
     if (!searchQuery) return
 
-    const response = await artworksService.searchArtworks(searchQuery, viewBy.value, page)
+    const response = await artworksService.searchArtworks(searchQuery, loadBy.value, page)
     if (!response) return
 
     pagination.value = response.data.pagination
-    images.value = response.data.data
+
+    const loadedArtworks = response.data.data
+    if (!loadedArtworks?.length) {
+      artworks.value = []
+    }
 
     const isNewSearch = searchQuery !== currentSearchQuery.value
     if (isNewSearch) {
       currentSearchQuery.value = searchQuery
-      resetCurrentPageToFirst()
+      currentPage.value = 1
+      artworks.value = loadedArtworks
+    } else {
+      artworks.value = [...artworks.value, ...loadedArtworks]
     }
   }
 
-  watch(viewBy, async () => {
+  const loadMore = async () => {
+    currentPage.value++
+    await searchArtworks(currentSearchQuery.value, currentPage.value)
+  }
+
+  watch(loadBy, async () => {
     await searchArtworks()
   })
 
   return {
     pagination,
-    images,
-    viewBy,
+    artworks,
+    viewBy: loadBy,
     searchArtworks,
     currentSearchQuery,
-    currentPageResetTrigger
+    loadMore
   }
 })

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ArtworksWrap from '@/components/ArtworksWrap.vue'
+import ArtworksWrap from '@/components/artworks/ArtworksWrap.vue'
 </script>
 
 <template>
