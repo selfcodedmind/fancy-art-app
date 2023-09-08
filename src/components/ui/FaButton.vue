@@ -18,6 +18,8 @@
   padding: 8px 10px;
   cursor: pointer;
   transition: 0.1s;
+  text-align: center;
+  white-space: nowrap;
 
   @media (hover: hover) {
     &:hover {

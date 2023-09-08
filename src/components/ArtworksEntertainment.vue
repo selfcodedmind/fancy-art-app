@@ -29,6 +29,12 @@ const isVizualizationModalOpen = ref(false)
 .entertainment {
   display: flex;
   align-items: center;
+  gap: 10px;
+
+  @include breakpoint(tablet-portrait) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   // .entertainment__title
   &__title {
     margin-right: 16px;
@@ -39,6 +45,10 @@ const isVizualizationModalOpen = ref(false)
   &__list {
     display: flex;
     gap: 12px;
+
+    @include breakpoint(tablet-portrait) {
+      flex-wrap: wrap;
+    }
   }
 }
 </style>

@@ -28,6 +28,10 @@ import FaLink from '@/components/ui/FaLink.vue'
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
+
+    @include breakpoint(mobile) {
+      display: grid;
+    }
   }
 
   // .header__logo
@@ -37,6 +41,7 @@ import FaLink from '@/components/ui/FaLink.vue'
     font-style: italic;
     font-weight: 400;
     line-height: normal;
+    white-space: nowrap;
   }
 
   // .header__nav

@@ -33,6 +33,20 @@ import FaContainer from '@/components/ui/FaContainer.vue'
     line-height: 140px;
     letter-spacing: -4px;
     text-transform: uppercase;
+
+    @include breakpoint(tablet-portrait) {
+      font-size: 64px;
+      letter-spacing: normal;
+      padding-top: 60px;
+      margin-bottom: 60px;
+      line-height: 150%;
+    }
+
+    @include breakpoint(mobile) {
+      font-size: 36px;
+      padding-top: 20px;
+      margin-bottom: 20px;
+    }
   }
 
   // .artworks__header
@@ -42,6 +56,11 @@ import FaContainer from '@/components/ui/FaContainer.vue'
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
+
+    @include breakpoint(tablet-portrait) {
+      display: grid;
+      justify-content: stretch;
+    }
   }
 
   // .artworks__search

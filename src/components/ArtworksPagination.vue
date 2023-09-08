@@ -63,6 +63,10 @@ const handleViewByChange = (value: 20 | 50 | 100) => {
   align-items: center;
   justify-content: flex-end;
 
+  @include breakpoint(tablet-portrait) {
+    justify-content: flex-start;
+  }
+
   // .pagination__range
   &__range {
     white-space: nowrap;

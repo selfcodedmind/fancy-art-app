@@ -5,3 +5,29 @@
 @mixin font-secondary {
   font-family: 'Ogg TRIAL', sans-serif;
 }
+
+@mixin breakpoint($breakpoint) {
+  @if $breakpoint == desktop-small {
+    @media only screen and (width <= 1559px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tablet-landscape {
+    @media only screen and (width <= 1199px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tablet-portrait {
+    @media only screen and (width <= 991px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == mobile {
+    @media only screen and (width <= 479px) {
+      @content;
+    }
+  }
+}
