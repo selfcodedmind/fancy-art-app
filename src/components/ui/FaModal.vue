@@ -36,29 +36,31 @@ const maxWidthInPx = computed(() => `${props.maxWidth}px`)
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 40px 40px 0;
+
   // .modal__overlay
   &__overlay {
-    background: rgba(0, 0, 0, 50%);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: rgb(0 0 0 / 50%);
   }
+
   // .modal__wrap
   &__wrap {
-    border-radius: 4px;
     position: relative;
-    background: white;
-    overflow-y: auto;
-    max-height: calc(100%);
     max-width: v-bind(maxWidthInPx);
+    max-height: calc(100%);
+    overflow-y: auto;
+    background: white;
+    border-radius: 4px;
   }
 }
 </style>

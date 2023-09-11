@@ -41,8 +41,8 @@ const backgroundColor = computed(() => {
   &__img-wrap {
     height: 480px;
     padding: 60px;
-    background: v-bind(backgroundColor);
     margin-bottom: 16px;
+    background: v-bind(backgroundColor);
   }
 
   // .artwork__img
@@ -56,25 +56,18 @@ const backgroundColor = computed(() => {
 
   // .artwork__title
   &__title {
-    font-size: 22px;
-    text-transform: uppercase;
-    font-weight: 400;
     margin-bottom: 4px;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
   }
 
   // .artwork__description
   &__description {
     @include font-secondary;
+
     font-size: 18px;
     font-style: italic;
-  }
-
-  // .artwork__author
-  &__author {
-  }
-
-  // .artwork__date
-  &__date {
   }
 }
 </style>

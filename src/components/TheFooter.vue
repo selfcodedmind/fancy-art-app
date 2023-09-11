@@ -21,10 +21,11 @@ import FaLink from '@/components/ui/FaLink.vue'
 <style scoped lang="scss">
 .footer {
   padding-top: 40px;
+
   // .footer__wrap
   &__wrap {
-    border-top: 1px solid rgba(34, 34, 34, 0.15);
     padding: 16px 0;
+    border-top: 1px solid rgb(34 34 34 / 15%);
   }
 
   // .footer__inner
@@ -37,10 +38,6 @@ import FaLink from '@/components/ui/FaLink.vue'
   // .footer__author
   &__author {
     text-transform: uppercase;
-  }
-
-  // .footer__links
-  &__links {
   }
 }
 </style>

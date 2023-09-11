@@ -37,6 +37,7 @@ import FaLink from '@/components/ui/FaLink.vue'
   // .header__logo
   &__logo {
     @include font-secondary;
+
     font-size: 28px;
     font-style: italic;
     font-weight: 400;

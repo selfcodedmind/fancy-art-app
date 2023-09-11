@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ArtworksSearch from '@/components/artworks/ArtworksSearch.vue'
-import ArtworksImages from '@/components/artworks/ArtworksList.vue'
+import ArtworksList from '@/components/artworks/ArtworksList.vue'
 import ArtworksPagination from '@/components/artworks/ArtworksPagination.vue'
 import FaContainer from '@/components/ui/FaContainer.vue'
 import ArtworksLoadMore from '@/components/artworks/ArtworksLoadMore.vue'
@@ -17,7 +17,7 @@ const artworksStore = useArtworksStore()
         <ArtworksSearch class="artworks__search" />
       </div>
       <ArtworksPagination class="artworks__pagination" />
-      <ArtworksImages />
+      <ArtworksList />
       <ArtworksLoadMore v-if="artworksStore.artworks.length" />
     </FaContainer>
   </main>
@@ -27,37 +27,37 @@ const artworksStore = useArtworksStore()
 .artworks {
   // .artworks__title
   &__title {
-    text-align: center;
     padding-top: 80px;
     margin-bottom: 120px;
     font-size: 120px;
     font-style: normal;
     font-weight: 400;
     line-height: 140px;
-    letter-spacing: -4px;
+    text-align: center;
     text-transform: uppercase;
+    letter-spacing: -4px;
 
     @include breakpoint(tablet-portrait) {
-      font-size: 64px;
-      letter-spacing: normal;
       padding-top: 60px;
       margin-bottom: 60px;
+      font-size: 64px;
       line-height: 150%;
+      letter-spacing: normal;
     }
 
     @include breakpoint(mobile) {
-      font-size: 36px;
       padding-top: 20px;
       margin-bottom: 20px;
+      font-size: 36px;
     }
   }
 
   // .artworks__header
   &__header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     gap: 30px;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
 
     @include breakpoint(tablet-portrait) {

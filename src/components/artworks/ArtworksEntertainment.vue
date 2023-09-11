@@ -28,13 +28,14 @@ const isVizualizationModalOpen = ref(false)
 <style lang="scss" scoped>
 .entertainment {
   display: flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
 
   @include breakpoint(tablet-portrait) {
     flex-direction: column;
     align-items: flex-start;
   }
+
   // .entertainment__title
   &__title {
     margin-right: 16px;

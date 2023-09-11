@@ -14,19 +14,20 @@ defineProps<{ isLoading?: boolean }>()
 <style scoped lang="scss">
 .button {
   @include font-primary;
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: 1px solid var(--color-dark);
-  background: var(--color-white);
+
+  padding: 8px 10px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-  padding: 8px 10px;
-  cursor: pointer;
-  transition: 0.1s;
   text-align: center;
+  text-transform: uppercase;
   white-space: nowrap;
+  cursor: pointer;
+  background: var(--color-white);
+  border: 1px solid var(--color-dark);
+  border-radius: 10px;
+  transition: 0.1s;
 
   @media (hover: hover) {
     &:hover {

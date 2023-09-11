@@ -27,32 +27,37 @@ defineEmits<{
 .text-input {
   position: relative;
   display: block;
+
   &::after {
-    content: '';
     position: absolute;
-    left: 0;
     bottom: -2px;
+    left: 0;
     width: 100%;
-    background: black;
     height: 2px;
+    content: '';
+    background: black;
     opacity: 0;
     transition: 0.3s;
   }
+
   &:focus-within {
     outline: none;
+
     &::after {
       opacity: 1;
     }
   }
+
   // .text-input__field
   &__field {
+    width: 100%;
+    height: 40px;
     padding: 8px 32px 8px 0;
+    font-size: 18px;
     border: none;
     border-bottom: 1px solid var(--color-dark);
-    height: 40px;
-    font-size: 18px;
-    width: 100%;
     outline: none;
+
     ::placeholder {
       opacity: 0.5;
     }
@@ -60,20 +65,21 @@ defineEmits<{
 
   // .text-input__icon-wrap
   &__icon-wrap {
+    position: absolute;
+    top: 50%;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2px;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
     max-width: 24px;
     max-height: 24px;
+    padding: 2px;
+    transform: translateY(-50%);
+
     > * {
+      display: block;
       max-width: 100%;
       max-height: 100%;
-      display: block;
     }
   }
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useArtworksStore } from '@/stores/artworksStore'
 import { computed } from 'vue'
+import type { TViewBy } from '@/types/artworksTypes'
 
 const artworksStore = useArtworksStore()
 const pagination = computed(() => artworksStore.pagination)
@@ -16,7 +17,7 @@ const toPageCount = computed(() => {
   return isOnLastPage ? pagination.value?.total : pagination.value?.current_page * viewBy.value
 })
 
-const handleViewByChange = (value: 18 | 54 | 108) => {
+const handleViewByChange = (value: TViewBy) => {
   artworksStore.viewBy = value
 }
 </script>
@@ -34,7 +35,7 @@ const handleViewByChange = (value: 18 | 54 | 108) => {
           name="view-by"
           :disabled="!pagination?.total || pagination?.total <= artworksStore.viewBy"
           @change="
-            handleViewByChange(Number(($event.target as HTMLSelectElement).value) as 18 | 54 | 108)
+            handleViewByChange(Number(($event.target as HTMLSelectElement).value) as TViewBy)
           "
         >
           <option

@@ -36,18 +36,15 @@ const loadMore = async () => {
 
 <style scoped lang="scss">
 .load-more {
-  padding: 60px 0;
   display: flex;
   flex-direction: column;
+  padding: 60px 0;
   text-align: center;
+
   // .load-more__text
   &__text {
     margin-bottom: 12px;
     color: var(--color-grey);
-  }
-
-  // .load-more__button-wrap
-  &__button-wrap {
   }
 
   // .load-more__button

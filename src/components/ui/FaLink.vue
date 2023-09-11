@@ -27,22 +27,24 @@ withDefaults(
 <style scoped lang="scss">
 .link {
   position: relative;
-  &:after {
-    content: '';
+
+  &::after {
     position: absolute;
-    width: 100%;
-    height: 1px;
     bottom: 0;
     left: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
     background-color: var(--color-dark);
+    transition: transform 0.3s;
     transform: scaleX(0);
     transform-origin: bottom right;
-    transition: transform 0.3s;
   }
+
   @media (hover: hover) {
-    &:hover:after {
-      transform-origin: bottom left;
+    &:hover::after {
       transform: scaleX(1);
+      transform-origin: bottom left;
     }
   }
 }
