@@ -1,6 +1,6 @@
 <template>
   <div class="no-results">
-    <div class="no-results__title">sorry, no result found.</div>
+    <div class="no-results__title">sorry, no results found.</div>
     <div class="no-results__description">Please, try again with a different keyword or phrase.</div>
   </div>
 </template>
