@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { useArtworksStore } from '@/stores/artworksStore'
 import ArtworksListItem from '@/components/artworks/ArtworksListItem.vue'
+import ArtworksNoResultsFound from '@/components/artworks/ArtworksNoResultsFound.vue'
 const artworksStore = useArtworksStore()
 </script>
 
 <template>
-  <ul class="list">
-    <ArtworksListItem
-      v-for="(artwork, index) in artworksStore.artworks"
-      :key="artwork.image_id"
-      :index="index"
-      :artwork="artwork"
-    />
-  </ul>
+  <div>
+    <ul v-if="artworksStore.artworks.length" class="list">
+      <ArtworksListItem
+        v-for="(artwork, index) in artworksStore.artworks"
+        :key="artwork.image_id"
+        :index="index"
+        :artwork="artwork"
+      />
+    </ul>
+    <ArtworksNoResultsFound v-if="!artworksStore.artworks.length && artworksStore.noResultsFound" />
+  </div>
 </template>
 
 <style scoped lang="scss">

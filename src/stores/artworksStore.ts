@@ -12,6 +12,8 @@ export const useArtworksStore = defineStore('artworks', () => {
   const loadBy = ref<TViewBy>(18)
   const currentSearchQuery = ref('')
 
+  const noResultsFound = ref(false)
+
   const searchArtworks = async (
     searchQuery: string = currentSearchQuery.value,
     page: number = 1
@@ -26,6 +28,9 @@ export const useArtworksStore = defineStore('artworks', () => {
     const loadedArtworks = response.data.data
     if (!loadedArtworks?.length) {
       artworks.value = []
+      noResultsFound.value = true
+    } else {
+      noResultsFound.value = false
     }
 
     const isNewSearch = searchQuery !== currentSearchQuery.value
@@ -53,6 +58,7 @@ export const useArtworksStore = defineStore('artworks', () => {
     viewBy: loadBy,
     searchArtworks,
     currentSearchQuery,
-    loadMore
+    loadMore,
+    noResultsFound
   }
 })
