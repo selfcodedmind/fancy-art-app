@@ -1,52 +1,38 @@
 <script setup lang="ts">
 import { useArtworksStore } from '@/stores/artworksStore'
 import { computed } from 'vue'
-import type { TViewBy } from '@/types/artworksTypes'
+import type { TLoadBy } from '@/types/artworksTypes'
+import Multiselect from '@vueform/multiselect'
 
 const artworksStore = useArtworksStore()
 const pagination = computed(() => artworksStore.pagination)
-const viewBy = computed(() => artworksStore.viewBy)
 
-const viewByOptions = [18, 54, 108]
-
-const toPageCount = computed(() => {
-  if (!pagination.value) return
-
-  const isOnLastPage = pagination.value.current_page === pagination.value.total_pages
-
-  return isOnLastPage ? pagination.value?.total : pagination.value?.current_page * viewBy.value
+const loadByOptions: TLoadBy[] = [18, 36, 54]
+const loadBy = computed({
+  get: () => {
+    return artworksStore.loadBy
+  },
+  set: (selectedLoadBy) => {
+    return (artworksStore.loadBy = selectedLoadBy)
+  }
 })
-
-const handleViewByChange = (value: TViewBy) => {
-  artworksStore.viewBy = value
-}
 </script>
 
 <template>
   <div class="pagination">
     <div v-if="pagination?.total" class="pagination__range">
-      1 - {{ toPageCount }} from
+      1 - {{ artworksStore.artworks.length }} from
       {{ pagination?.total }}
     </div>
     <div class="">
-      <label class="view-by">
-        Load by
-        <select
-          name="view-by"
-          :disabled="!pagination?.total || pagination?.total <= artworksStore.viewBy"
-          @change="
-            handleViewByChange(Number(($event.target as HTMLSelectElement).value) as TViewBy)
-          "
-        >
-          <option
-            v-for="option in viewByOptions"
-            :key="option"
-            :value="option"
-            :selected="artworksStore.viewBy === option"
-          >
-            {{ option }}
-          </option>
-        </select>
+      <label class="load-by">
+        <span class="load-by__label-text"> Load by </span>
+        <Multiselect
+          v-model="loadBy"
+          class="load-by__select"
+          :options="loadByOptions"
+          :can-clear="false"
+        />
       </label>
     </div>
   </div>
@@ -69,7 +55,19 @@ const handleViewByChange = (value: TViewBy) => {
   }
 }
 
-.view-by {
-  white-space: nowrap;
+.load-by {
+  display: flex;
+  align-items: center;
+
+  // .load-by__label-text
+  &__label-text {
+    margin-right: 20px;
+    white-space: nowrap;
+  }
+
+  // .load-by__select
+  &__select {
+    min-width: 100px;
+  }
 }
 </style>

@@ -1,7 +1,7 @@
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { TArtworksSearchResponse } from '@/types/artworksTypes'
-import type { TViewBy } from '@/types/artworksTypes'
+import type { TLoadBy } from '@/types/artworksTypes'
 import { artworksService } from '@/services/artworksService'
 
 export const useArtworksStore = defineStore('artworks', () => {
@@ -9,7 +9,7 @@ export const useArtworksStore = defineStore('artworks', () => {
   const artworks = ref<TArtworksSearchResponse['data']>([])
 
   const currentPage = ref(1)
-  const loadBy = ref<TViewBy>(18)
+  const loadBy = ref<TLoadBy>(18)
   const currentSearchQuery = ref('')
 
   const noResultsFound = ref(false)
@@ -48,14 +48,10 @@ export const useArtworksStore = defineStore('artworks', () => {
     await searchArtworks(currentSearchQuery.value, currentPage.value)
   }
 
-  watch(loadBy, async () => {
-    await searchArtworks()
-  })
-
   return {
     pagination,
     artworks,
-    viewBy: loadBy,
+    loadBy,
     searchArtworks,
     currentSearchQuery,
     loadMore,

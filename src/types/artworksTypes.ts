@@ -34,4 +34,4 @@ export type TArtworksSearchResponse = {
   }
 }
 
-export type TViewBy = 18 | 36 | 54
+export type TLoadBy = 18 | 36 | 54

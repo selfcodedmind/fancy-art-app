@@ -1,5 +1,6 @@
 import 'sanitize.css'
 import '@/assets/styles/global.scss'
+import '@vueform/multiselect/themes/default.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

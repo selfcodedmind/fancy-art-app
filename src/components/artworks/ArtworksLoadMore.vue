@@ -1,6 +1,8 @@
 <template>
   <div class="load-more">
-    <div class="load-more__text">You've viewed {{ viewedArtworks }} of {{ pagination?.total }}</div>
+    <div class="load-more__text">
+      You've viewed {{ artworksStore.artworks.length }} of {{ pagination?.total }}
+    </div>
     <div class="load-more__button-wrap">
       <FaButton class="load-more__button" :is-loading="isLoading" @click="loadMore">
         LOAD MORE
@@ -16,15 +18,6 @@ import { computed, ref } from 'vue'
 
 const artworksStore = useArtworksStore()
 const pagination = computed(() => artworksStore.pagination)
-const viewBy = computed(() => artworksStore.viewBy)
-
-const viewedArtworks = computed(() => {
-  if (!pagination.value) return
-
-  const isOnLastPage = pagination.value.current_page === pagination.value.total_pages
-
-  return isOnLastPage ? pagination.value?.total : pagination.value?.current_page * viewBy.value
-})
 
 const isLoading = ref(false)
 const loadMore = async () => {
