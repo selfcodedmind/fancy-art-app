@@ -26,5 +26,13 @@ const artworksStore = useArtworksStore()
   grid-gap: 60px 40px;
   padding: 0;
   list-style: none;
+
+  @include breakpoint(tablet-landscape) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(tablet-portrait) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

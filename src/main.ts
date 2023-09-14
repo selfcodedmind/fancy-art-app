@@ -1,6 +1,7 @@
 import 'sanitize.css'
 import '@/assets/styles/global.scss'
 import '@vueform/multiselect/themes/default.css'
+import 'vue-toastification/dist/index.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

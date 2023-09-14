@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { TArtwork } from '@/types/artworksTypes'
 
 const props = defineProps<{
@@ -13,15 +14,23 @@ const backgroundColor = computed(() => {
 
   return `hsl(${props.artwork.color.h}, ${props.artwork.color.s}%, 95%)`
 })
+
+const notFound = ref(false)
 </script>
 
 <template>
   <li class="artwork">
-    <div class="artwork__img-wrap">
+    <div
+      class="artwork__img-wrap"
+      :class="{
+        'artwork__img-wrap--not-found': notFound
+      }"
+    >
       <img
         class="artwork__img"
         :src="`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`"
         :alt="artwork.title"
+        @error="notFound = true"
       />
     </div>
 
@@ -39,10 +48,28 @@ const backgroundColor = computed(() => {
 .artwork {
   // .artwork__img-wrap
   &__img-wrap {
+    position: relative;
     height: 480px;
     padding: 60px;
     margin-bottom: 16px;
     background: v-bind(backgroundColor);
+
+    // .artwork__img-wrap--not-found
+    &--not-found {
+      &::after {
+        position: absolute;
+        inset: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        font-size: 18px;
+        text-align: center;
+        content: 'Image not found';
+        background: var(--color-white);
+        border-radius: 8px;
+      }
+    }
   }
 
   // .artwork__img
