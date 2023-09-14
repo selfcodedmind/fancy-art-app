@@ -6,7 +6,10 @@
         <p>This is Roman Popov pet project.</p>
         <p>You can contact me with:</p>
         <ul>
-          <li>Email: <FaLink to="mailto:romanpopov.webdev@gmail.com">romanpopov.webdev@gmail.com</FaLink></li>
+          <li>
+            Email:
+            <FaLink to="mailto:romanpopov.webdev@gmail.com">romanpopov.webdev@gmail.com</FaLink>
+          </li>
           <li>Telegram: <FaLink to="https://t.me/fingersdaggers">@fingersdaggers</FaLink></li>
         </ul>
       </div>
